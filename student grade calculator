@@ -1,0 +1,43 @@
+package codsoftt;
+import java.util.Scanner;
+public class studentt
+{
+	public static void main(String[] args)
+	{
+	Scanner sc= new Scanner(System.in);
+	System.out.println("enter the number of subjects for grade to be calculated"); 
+	double subject=sc.nextDouble();
+	int totmarks=0;
+	for (int i=1;i<=subject;i++)
+	{
+		System.out.print("Enter marks for Subject " + i + " (out of 100): ");
+        int marks = sc.nextInt();
+        totmarks += marks;
+       }
+	double percentage =  totmarks / (subject * 100) * 100;
+	char grade;
+    if (percentage >= 90 ) {
+        grade = 'A';
+    } 
+    else if (percentage >= 80)
+    {
+        grade = 'B';
+    } 
+    else if (percentage >= 70)
+    {
+        grade = 'C';
+    }
+    else if (percentage >= 50 )
+    {
+        grade = 'D';
+    } 
+    else
+    {
+        grade = 'F';
+    }
+    System.out.println("Results:");
+    System.out.println("Total Marks: " + totmarks);
+    System.out.println("Average Percentage: " + percentage + "%");
+    System.out.println("Grade: " + grade);
+	}
+}
