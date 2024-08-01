@@ -1,60 +1,58 @@
-package codsoftt;
+package number;
+
 import java.util.Scanner;
-import java.util.*;
-public class numbergame 
-{
-   public static void main(String[]args)
-   {
-	   Scanner sc=new Scanner(System.in);
-	   Random ran=new Random();
-	   int number = ran.nextInt(100)+1;
-	    int round = 0;
-	    int count = 0;
-	    int guess = 0;
-	    int win = 0;
-	    int k=5;
-	    for(int i=0;i<=k;i++)	    
+import java.util.Random;
 
-	    while(win == 0)
-	    {
-	        round++;
-	        System.out.println("Round " + round);
+public class numbergame {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Random ran = new Random();
+        String playAgain;
 
-	        System.out.print("What is your first guess? ");
-	        guess = sc.nextInt();
-	        count++;
+        do {
+            int number = ran.nextInt(100) + 1;
+            int round = 0;
+            int count = 0;
+            int guess = 0;
+            int win = 0;
+            int k = 5;
 
-	        if (guess == number)
-	        {
-	            if (count == 1)
-	            {
-	                System.out.println("You win in " + count + " guess.");
-	                ++win;
-	                break;
-	            }
-	        }
-	        else if (guess > number)
-		   {
-	                 System.out.println("That's too high. Try again: ");
-	        }
-	       else if (guess < number)
-	        {
-	                 System.out.println("That's too low. Try again: ");
-	        }
+            for (int i = 0; i < k && win == 0; i++) {
+                round++;
+                System.out.println("Round " + round);
 
-	         }
-boolean isValidAnswer;
-do
-{
-    System.out.print("Would you like to play again (yes/no)? ");
-    String playAgain = sc.next().toUpperCase();
-    isValidAnswer= playAgain.equals("YES") || playAgain.equals("NO");
-    if(! isValidAnswer)
-    {
-        System.out.println("Error: Please enter yes or no");
-        System.out.println();
+                System.out.print("What is your guess? ");
+                guess = sc.nextInt();
+                count++;
+
+                if (guess == number) {
+                    System.out.println("You win in " + count + " guess" + (count > 1 ? "es" : "") + ".");
+                    win = 1;
+                    break;
+                } else if (guess > number) {
+                    System.out.println("That's too high. Try again: ");
+                } else if (guess < number) {
+                    System.out.println("That's too low. Try again: ");
+                }
+            }
+
+            if (win == 0) {
+                System.out.println("Sorry, you've used all attempts. The correct number was " + number + ".");
+            }
+
+            boolean isValidAnswer;
+            do {
+                System.out.print("Would you like to play again (yes/no)? ");
+                playAgain = sc.next().toUpperCase();
+                isValidAnswer = playAgain.equals("YES") || playAgain.equals("NO");
+                if (!isValidAnswer) {
+                    System.out.println("Error: Please enter yes or no");
+                    System.out.println();
+                }
+            } while (!isValidAnswer);
+
+        } while (playAgain.equals("YES"));
+
+        sc.close();
     }
-}while(!isValidAnswer);
 }
-}
-
